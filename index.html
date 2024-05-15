@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bringing Data From API Asmit Basnet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        .joke-text {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .box {
+            max-width: 400px;
+            margin: 20px auto;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bringing Data using API</h1>
+        <div class="joke-text">
+            <p>What's Chuck Norris doing today?</p>
+        </div>
+        <button onclick="jokereload()">Press me to laugh!</button>
+        <div class="box">
+            <p id="a"></p>
+        </div>
+    </div>
+
+    <script>
+        function jokereload() {
+            fetch('https://api.chucknorris.io/jokes/random?category=food')
+                .then(response => response.json())
+                .then(json => document.getElementById("a").textContent = json.value)
+                .catch(error => console.error('Unable to fetch joke:', error));
+        }
+
+        jokereload();
+    </script>
+</body>
+</html>
